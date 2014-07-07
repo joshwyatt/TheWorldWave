@@ -9,15 +9,21 @@ angular.module('wwa.factories', [])
 
   //HELPER METHODS
 
-  //wave making function
-  waveService.makeWave = function(){
+  //wave making function eventually needs tying to actual database
+  waveService.makeWave = function(createdBy){
     var wave = {};
     wave.id = _waveIdTicker++;
+    wave.userQueue = [];
     wave.createdAt = new Date;
+    wave.createdBy = createdBy || 'ya moms shiver';
+    wave.userQueue.push(wave.createdBy);
+    _waves[wave.id] = wave;
     return wave;
-    //time created
-    //
   };
+
+  waveService.destroyWave = function(waveId){
+    delete _waves[waveId];
+  }
 
   return waveService;
 

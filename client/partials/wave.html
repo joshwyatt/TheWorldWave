@@ -1,4 +1,7 @@
 <div ng-controller="WaveController">
   <h3>Inside wave.html</h3>
   <p am-time-ago="wave.createdAt"></p>
+  <p> wave id: {{ wave.id }}</p>
+  <p> create by {{ wave.createdBy }}</p>
+  <p ng-repeat="user in wave.userQueue">user {{ $index + 1 }} is {{ user }}</p>
 </div>
