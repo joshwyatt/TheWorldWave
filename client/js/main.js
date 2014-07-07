@@ -8,7 +8,7 @@ var app = angular.module('worldWaveApp', ['ui.router'])
         
         .state('home', {
             url: '/home',
-            templateUrl: '../partial-home.html'
+            templateUrl: 'partials/partial-home.html'
         });
         
 })
