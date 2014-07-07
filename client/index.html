@@ -7,9 +7,12 @@
       <h1>Hello welcome to the World Wave!</h1>
     </div>
     <div ng-controller="UserController">
-      <h3>This is a test paragraph to display user.username from the UserController
+      <h3>This is a test paragraph to display user.username from the UserController</h3>
       <p>{{ user.username }}</p>
     </div>
+    <div ng-controller="WaveStatsController">
+      <h3>This is a test to display currentWave properties from WaveStatsController</h3>
+      <p ng-repeat="stat in currentWave">{{ stat }}</p>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="../bower_components/angular-ui-utils/ui-utils.min.js"></script>
     <script src="js/main.js"></script>

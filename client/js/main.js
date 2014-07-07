@@ -10,4 +10,13 @@ var app = angular.module('worldWaveApp', [])
     username: 'josh'
   }
 
+})
+
+.controller('WaveStatsController', function($scope){
+
+  $scope.currentWave = {
+    size: 10,
+    length: 15
+  }
+
 });
