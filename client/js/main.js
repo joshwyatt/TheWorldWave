@@ -1,4 +1,4 @@
-var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers'])
+var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angularMoment'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     

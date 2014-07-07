@@ -1,4 +1,4 @@
-angular.module('wwa.controllers', [])
+angular.module('wwa.controllers', ['wwa.factories'])
 
 .controller('UserController', function($scope){
   $scope.user = {
@@ -7,12 +7,8 @@ angular.module('wwa.controllers', [])
 })
 
 .controller('WaveStatsController', function($scope){
-  $scope.currentWave = {
-    size: 10,
-    length: 15
-  }
 })
 
-.controller('WaveController', function($scope){
-
+.controller('WaveController', function($scope, waveFactory, $log){
+  $scope.wave = waveFactory.makeWave();
 });
