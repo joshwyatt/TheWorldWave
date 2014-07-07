@@ -2,15 +2,23 @@ var app = angular.module('worldWaveApp', ['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/home');
-    
+    // $urlRouterProvider.otherwise('/user');
     $stateProvider
-        
-        .state('home', {
-            url: '/home',
-            templateUrl: 'partials/partial-home.html'
+
+        .state('user', {
+            url: '/user',
+            templateUrl: 'partials/user.html'
+        })
+
+        .state('wave', {
+          url: '/wave',
+          templateUrl: 'partials/wave.html'
+        })
+
+        .state('waveStats', {
+          url: '/waveStats',
+          templateUrl: 'partials/waveStats.html'
         });
-        
 })
 
 .run(function($rootScope){
@@ -18,18 +26,14 @@ var app = angular.module('worldWaveApp', ['ui.router'])
 })
 
 .controller('UserController', function($scope){
-
   $scope.user = {
     username: 'josh'
   }
-
 })
 
 .controller('WaveStatsController', function($scope){
-
   $scope.currentWave = {
     size: 10,
     length: 15
   }
-
 });
