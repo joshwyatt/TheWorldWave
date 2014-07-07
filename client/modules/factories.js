@@ -13,6 +13,7 @@ angular.module('wwa.factories', [])
   waveService.makeWave = function(){
     var wave = {};
     wave.id = _waveIdTicker++;
+    wave.createdAt = new Date;
     return wave;
     //time created
     //

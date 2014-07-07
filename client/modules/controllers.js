@@ -10,5 +10,5 @@ angular.module('wwa.controllers', ['wwa.factories'])
 })
 
 .controller('WaveController', function($scope, waveFactory, $log){
-  $scope.waves = {};
+  $scope.wave = waveFactory.makeWave();
 });
