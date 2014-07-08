@@ -1,47 +1,50 @@
-angular.module('wwa.factories', [])
+angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
-.factory('waveFactory', function(){
-
+.factory('waveFactory', function($firebase, fbUrl){
   var waveService = {};
+
+  var wavesRef = new Firebase(fbUrl + '/waves');
+  var waves = $firebase(wavesRef);
+
   //storage for waves
-  var _waves = {};
-  var _waveIdTicker = 0;
+  // var _waves = {};
+  // var _waveIdTicker = 0;
 
   //HELPER METHODS
 
   //wave making function eventually needs tying to actual database
   waveService.makeWave = function(createdBy){
-    var wave = {};
-    wave.id = _waveIdTicker++;
-    wave.userQueue = [];
-    wave.createdAt = new Date;
-    wave.createdBy = createdBy || 'ya moms shiver';
-    wave.userQueue.push(wave.createdBy);
-    _waves[wave.id] = wave;
-    return wave;
+    var createdAt = new Date;
+    var createdBy = createdBy || 'ya moms shiver';
+    waves.$add({
+      createdAt: createdAt,
+      createdBy: createdBy
+    });
   };
 
   waveService.destroyWave = function(waveId){
-    delete _waves[waveId];
-  }
+    //needs to be rebuild for firebase
+  };
 
   return waveService;
 
 })
 
-.factory('userFactory', function(){
+.factory('userFactory', function($firebase, fbUrl){
   var userService = {};
-  var _users = {};
-  var _userIdTicker = 0;
+
+  var usersRef = new Firebase(fbUrl + '/users');
+  var users = $firebase(usersRef);
 
   userService.makeUser = function(name){
-    var user = {};
-    user.wave = {};
-    user.id = _userIdTicker++;
-    user.createdAt = new Date;
-    _users[user.id] = user;
-    return user;
-  }
+    var createdAt = new Date;
+
+    users.$add({
+      createdAt: createdAt,
+      name: name
+    });
+  };
 
   return userService;
-})
+});
+
