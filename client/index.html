@@ -11,16 +11,15 @@
     <a ui-sref="waveStats">Wave Stats</a>
 
     <div ng-controller="UserController">
-      <form novalidate>
+      <form name="addUserForm" ng-submit="makeUser(newUser)" novalidate>
         <input type="text" ng-model="newUser">
-        <p>{{ newUser }}</p>
-        <button ng-click="addadd()">create user</button>
+        <button type="submit">create user</button>
       </form>
-      <p>{{ fireUsers }}</p>
     </div>
 
     <h3>Below is ui-view</h3>
     <div ui-view></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
     <script src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js'></script>
@@ -31,5 +30,6 @@
     <script src="js/main.js"></script>
     <script src="modules/factories.js"></script>
     <script src="modules/controllers.js"></script>
+
   </body>
 </html>
