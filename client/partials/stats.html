@@ -2,9 +2,10 @@
   <h2 class="mid">Josh's Waves</h2>
   <div ng-repeat="wave in waves">
     <div class="userScoreDisplay">
-      <h3>ID: {{ wave.id }}<br>
+      <h3>Created: {{ wave.startedAt }}<br>
       Users: {{ wave.numberOfUsers }}<br>
-      Score: {{ wave.score }}</h3>
+      Score: {{ wave.score }}<br>
+      Average: {{ wave.average }}</h3>
       <hr>
     </div>
   </div>

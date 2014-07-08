@@ -27,3 +27,7 @@ dt {
 .mainDisplay {
   overflow: scroll;
 }
+
+.white {
+  color: white !important;
+}

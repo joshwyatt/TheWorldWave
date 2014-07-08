@@ -48,7 +48,8 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   waveService.makeWave = function(user){
     var wave = {};
     wave.id = waveIdTicker++;
-    wave.startedAt = new Date;
+    // wave.startedAt = new Date;
+    wave.startedAt = '20 hours ago';
     wave.userQueue = [];
 
     wave.user = user;
