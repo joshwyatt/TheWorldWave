@@ -6,6 +6,7 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   </head>
   <body>
+    
     <div class="container-fluid">
 
       <nav class="navbar navbar-inverse" role="navigation">
@@ -18,52 +19,39 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Navbar?</a>
+            <a class="navbar-brand" href="#">World Wide Wave</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li><a ui-sref="user">User</a></li>
+              <li><a ui-sref="signup">Signup/Signin</a></li>
               <li><a ui-sref="wave">Wave</a></li>
-              <li><a ui-sref="waveStats">waveStats</a></li>
+              <li><a ui-sref="stats">Stats</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>
 
       <div class="page-header">
-        <h1><small>World Wide Wave!</small></h1>
       </div>
-      <!-- <div class="row">
-        <div class="col-xs-4">
-          <a ui-sref="user">User</a>
-        </div>
-
-        <div class="col-xs-4">
-          <a ui-sref="wave">Wave</a>
-        </div>
-
-        <div class="col-xs-4">
-          <a ui-sref="waveStats">Wave Stats</a>
-        </div>
-      </div> -->
     </div>
 
-      <!-- <h3>Below is ui-view</h3> -->
-      <div ui-view></div>
+    <div ui-view></div>
 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
       <script src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
       <script src="../bower_components/angular-ui-utils/ui-utils.min.js"></script>
       <script src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js'></script>
+      <script src='https://cdn.firebase.com/js/simple-login/1.6.1/firebase-simple-login.js'>
+      </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
       <script src="../bower_components/moment/moment.js"></script>
       <script src="../bower_components/angular-moment/angular-moment.js"></script>
+      <script src="modules/factories.js"></script>
       <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
       <script src="js/main.js"></script>
-      <script src="modules/factories.js"></script>
       <script src="modules/controllers.js"></script>
 
   </body>

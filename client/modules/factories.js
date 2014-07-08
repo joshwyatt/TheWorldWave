@@ -1,52 +1,101 @@
 angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
-.factory('waveFactory', function($firebase, fbUrl){
-  var waveService = {};
-
-  var wavesRef = new Firebase(fbUrl + '/waves');
-  var waves = $firebase(wavesRef);
-
-  waveService.makeWave = function(createdBy){
-    var createdAt = new Date;
-    var createdBy = createdBy || 'ya moms shiver';
-    waves.$add({
-      createdAt: createdAt,
-      createdBy: createdBy
-    });
-  };
-
-  waveService.destroyWave = function(waveId){
-    //needs to be rebuild for firebase
-  };
-
-  return waveService;
-
-})
-
-.factory('userFactory', function($firebase, fbUrl){
+.factory('userFactory', function($firebase, fbUrl, $log){
   var userService = {};
 
-  var usersRef = new Firebase(fbUrl + '/users');
-  var users = $firebase(usersRef);
+  userService.createUser = function(newUser){
+    var userRef = new Firebase(fbUrl + '/users');
+    var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
+      if (error) {
+        console.log(error);
+      } else if (user) {
+        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+      }
+    });
 
-  userService.currentUser;
+    auth.createUser(newUser.email, newUser.password, function(error, user) {
+      if (!error) {
+        console. log('User Id: ' + user.uid + ', Email: ' + user.email);
+        auth.$add({id: user.uid, email: user.email});
+      }
+      if (error){
+        console.log('in error: ' + error);
+      }
+    });
+  }
 
-  userService.getCurrentUser = function(){
-    return userService.currentUser;
-  };
-
-  userService.makeUser = function(name){
-    var createdAt = new Date;
-
-    user = {
-      createdAt: createdAt,
-      name: name
-    };
-
-    userService.currentUser = user;
-    users.$add(user);
+  userService.loginUser = function(){
+      var userRef = new Firebase(fbUrl);
+      var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
+        if (error) {
+          // an error occurred while attempting login
+          console.log(error);
+        } else if (user) {
+          // user authenticated with Firebase
+          console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+        } else {
+          // user is logged out
+        }
+      });
+      auth.login('facebook');
   };
 
   return userService;
-});
+})
 
+.factory('waveFactory', function($firebase, fbUrl, $log){
+  var waveService = {};
+  var waveIdTicker = 0;
+
+  waveService.waves = {};
+
+  waveService.makeWave = function(user){
+    var wave = {};
+    wave.id = waveIdTicker++;
+    wave.startedAt = new Date;
+    wave.userQueue = [];
+
+    wave.user = user;
+    wave.userQueue.push(user);
+
+    wave.passes = 0;
+    wave.score = 0;
+    wave.lastPass = wave.startedAt;
+
+    wave.users = wave.userQueue.length;
+
+    var fb = new Firebase(fbUrl + '/waves');
+    fb.set({
+      id: wave.id,
+      startedAt: wave.startedAt,
+      user: wave.user,
+      passes: wave.passes,
+      score: wave.score,
+      lastPass: wave.lastPass,
+      numberOfUsers: wave.users
+    });
+
+    return wave;
+  };
+
+  waveService.addWaveToWaves = function(wave){
+    waveService.waves[wave.id] = wave;
+  };
+
+  waveService.updateWaveScore = function(wave){
+    var currentTime = new Date;
+    var timeAlive = currentTime - wave.startedAt;
+    var timeSinceLastPass = currentTime - wave.lastPass;
+
+
+    return wave;
+  };
+
+  waveService.passWave = function(wave){
+    //pass wave to next user in userqueue
+    //update passes
+    //update score
+  }
+
+  return waveService;
+});

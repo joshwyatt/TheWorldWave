@@ -3,20 +3,20 @@ var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angul
 .config(function($stateProvider, $urlRouterProvider) {
     
     $stateProvider
-        .state('user', {
-            url: '/user',
-            templateUrl: 'partials/user.html'
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'partials/signUp.html'
         })
         .state('wave', {
           url: '/wave',
           templateUrl: 'partials/wave.html'
         })
-        .state('waveStats', {
-          url: '/waveStats',
-          templateUrl: 'partials/waveStats.html'
+        .state('stats', {
+          url: '/stats',
+          templateUrl: 'partials/stats.html'
         });
 
-    $urlRouterProvider.otherwise('/user');
+    $urlRouterProvider.otherwise('/signUp');
 })
 
 .run(function($rootScope){

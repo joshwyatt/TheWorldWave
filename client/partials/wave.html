@@ -1,9 +1,10 @@
 <div ng-controller="WaveController">
-  <div class="form-group">
-    <form name="addWaveForm" ng-submit="makeWave(newWave)" novalidate>
-      <input class="form-control" type="text" ng-model="newWave" placeholder="enter wavename">
-      <input type="submit" style="position: absolute; left: -9999px"/>
+  <!-- <div class="form-group">
+    <form name="addWaveForm" ng-submit="waveAway()" novalidate>
+      <button type="submit" class="btn btn-primary btn-xl center-block">WAVE!</button>
+      <button type="submit" class="btn btn-primary btn-mxl center-block">Holla!</button>
     </form>
-  </div>
-  <!-- <button type="submit">Wave!</button> -->
+  </div> -->
+  <button ng-click="makeWave('josh')" novalidate>Make A Wave</button>
+  <div ng-repeat="(key, value) in wave">{{ key }}: {{ value }}</div>
 </div>
