@@ -48,13 +48,15 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   waveService.makeWave = function(user){
     var wave = {};
     wave.id = waveIdTicker++;
-    wave.startedAt = new Date;
+    // wave.startedAt = new Date;
+    wave.startedAt = '20 hours ago';
     wave.userQueue = [];
 
     wave.user = user;
     wave.userQueue.push(user);
 
     wave.passes = 0;
+    wave.average = 0;
     wave.score = 0;
     wave.lastPass = wave.startedAt;
 
@@ -66,6 +68,7 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
       startedAt: wave.startedAt,
       user: wave.user,
       passes: wave.passes,
+      average: wave.average,
       score: wave.score,
       lastPass: wave.lastPass,
       numberOfUsers: wave.users
