@@ -1,4 +1,8 @@
-angular.module('wwa.factories', [])
+angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
+
+.factory('fireFactory', function($firebase, fbUrl){
+
+})
 
 .factory('waveFactory', function(){
 
@@ -23,7 +27,7 @@ angular.module('wwa.factories', [])
 
   waveService.destroyWave = function(waveId){
     delete _waves[waveId];
-  }
+  };
 
   return waveService;
 
@@ -31,15 +35,16 @@ angular.module('wwa.factories', [])
 
 .factory('userFactory', function(){
   var userService = {};
-  var _users = {};
+  var _user = {};
   var _userIdTicker = 0;
 
   userService.makeUser = function(name){
     var user = {};
+    user.name = name;
     user.wave = {};
     user.id = _userIdTicker++;
     user.createdAt = new Date;
-    _users[user.id] = user;
+    _user = user;
     return user;
   }
 

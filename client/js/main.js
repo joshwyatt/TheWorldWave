@@ -1,4 +1,4 @@
-var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angularMoment'])
+var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angularMoment', 'firebase'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     
@@ -20,4 +20,6 @@ var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angul
 
 .run(function($rootScope){
   // Add any functionality that needs to run prior to the rest of the app.
-});
+})
+
+.constant('fbUrl', 'https://amber-fire-3283.firebaseio.com/')
