@@ -10,4 +10,10 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 
 .controller('WaveController', function($scope, waveFactory, $firebase){
   $scope.makeWave = waveFactory.makeWave;
-});
+})
+
+.controller('ButtonsController', function($scope){
+
+  $scope.radioModel = 'Middle';
+
+})
