@@ -1,7 +1,9 @@
 <div ng-controller="WaveController">
-  <!-- <p am-time-ago="wave.createdAt"></p> -->
-  <form name="addNewWave" ng-submit="makeWave(newWave)" novalidate>
-    <input type="text" ng-model="newWave">
-    <button type="submit">make a wave</button>
-  </form>
+  <div class="form-group">
+    <form name="addWaveForm" ng-submit="makeWave(newWave)" novalidate>
+      <input class="form-control" type="text" ng-model="newWave" placeholder="enter wavename">
+      <input type="submit" style="position: absolute; left: -9999px"/>
+    </form>
+  </div>
+  <!-- <button type="submit">Wave!</button> -->
 </div>
