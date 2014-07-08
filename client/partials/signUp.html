@@ -1,20 +1,18 @@
 <div ng-controller="SignUpController">
   <div class="form-group">
 
+    <h3>Sign Up</h3>
     <form name="userForm" ng-submit="createUser(user)" novalidate> 
         <div class="form-group">
             <label>Email</label>
             <input type="email" name="name" class="form-control" ng-model="user.email" required>
         </div>
         <div class="form-group">
-            <label>Username</label>
-            <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
-        </div>
-        <div class="form-group">
             <label>Password</label>
             <input type="password" name="password" class="form-control" ng-model="user.password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button class="btn btn-primary" sref="/signin">Sign In</button>
     </form>
     <!-- <form name="addUserForm" ng-submit="submitUser(newUser)" novalidate> -->
 <!--     <form name="addUserForm" ng-submit="makeUser()" novalidate>
