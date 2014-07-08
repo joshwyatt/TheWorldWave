@@ -1,14 +1,15 @@
-<div ng-controller="WaveController" ng-init="init()">
+<div class="mainDisplay" ng-controller="WaveController" ng-init="init()">
   <div ng-repeat="wave in waves">
-    <ul>
-      <li>ID: {{ wave.id }}</li>
-      <li>Created By: {{ wave.user }}</li>
-      <li>Number Of Users: {{ wave.numberOfUsers }}</li>
-      <li>Score: {{ wave.score }}</li>
-    </ul>
+    <dl>
+      <dt>Created By
+        <dd>{{ wave.user }}</dd>
+      </dt>
+      <dt>Number Of Users
+        <dd>{{ wave.numberOfUsers }}</dd>
+      </dt>
+      <dt>Score
+        <dd>{{ wave.score }}</dd>
+      </dt>
+    </dl>
   </div>
-
-
-  <!-- <div ng-repeat="(key, value) in wave">{{ key }}: {{ value }}</div> -->
-
 </div>

@@ -55,6 +55,7 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
     wave.userQueue.push(user);
 
     wave.passes = 0;
+    wave.average = 0;
     wave.score = 0;
     wave.lastPass = wave.startedAt;
 
@@ -66,6 +67,7 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
       startedAt: wave.startedAt,
       user: wave.user,
       passes: wave.passes,
+      average: wave.average,
       score: wave.score,
       lastPass: wave.lastPass,
       numberOfUsers: wave.users
