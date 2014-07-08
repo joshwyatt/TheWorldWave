@@ -64,5 +64,30 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   };
 
   return userService;
-});
+})
 
+.factory('statsFactory', function($firebase, fbUrl, $log){
+  var statsService = {};
+  var waveIdTicker = 0;
+
+  statsService.waves = {};
+
+  statsService.makeWave = function(user){
+    var wave = {};
+    wave.userQueue = [];
+
+    wave.user = user;
+    wave.id = waveIdTicker++;
+    wave.userQueue.add(user);
+    wave.startedAt = new Date;
+
+
+    return wave;
+  };
+
+  statsService.addWaveToWaves = function(wave){
+    statsService.waves[wave.id] = wave;
+  };
+
+  return statsService;
+});

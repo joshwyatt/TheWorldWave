@@ -6,28 +6,18 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
     userFactory.makeUser(user);
     $scope.newUser = '';
   };
-
 })
 
 .controller('WaveController', function($scope, waveFactory, $firebase, $log){
-
   $scope.waveAway = function(){
     alert();
     console.log('here');
   };
-
 })
 
 .controller('SignUpController', function($scope, userFactory, $firebase){
   $scope.createUser = userFactory.createUser;
 })
 
-.controller('WaveStatsController', function($scope, $firebase){
-})
-
-.controller('ButtonsController', function($scope){
-
-  $scope.radioModel = 'Middle';
-
+.controller('StatsController', function($scope, $firebase, statsFactory){
 });
-
