@@ -1,15 +1,11 @@
 <div class="mainDisplay" ng-controller="WaveController" ng-init="init()">
+  <h2 class="mid">Josh's Waves</h2>
   <div ng-repeat="wave in waves">
-    <dl>
-      <dt>Created By
-        <dd>{{ wave.user }}</dd>
-      </dt>
-      <dt>Number Of Users
-        <dd>{{ wave.numberOfUsers }}</dd>
-      </dt>
-      <dt>Score
-        <dd>{{ wave.score }}</dd>
-      </dt>
-    </dl>
+    <div class="userScoreDisplay">
+      <h3>ID: {{ wave.id }}<br>
+      Users: {{ wave.numberOfUsers }}<br>
+      Score: {{ wave.score }}</h3>
+      <hr>
+    </div>
   </div>
 </div>

@@ -2,6 +2,10 @@ body {
   background-image: url('http://fc01.deviantart.net/fs71/i/2011/037/0/4/free_use__purple_background_by_rannethepikachu_77-d38zio2.jpg');
 }
 
+.userScoreDisplay {
+  color: white !important;
+}
+
 dd, dt {
   font-size: 30px;
   text-align: center;
@@ -11,6 +15,13 @@ dd, dt {
 dt {
   color: darkgray;
   font-style: italic;
+}
+
+.mid {
+  color: darkgray;
+  font-size: 30px;
+  font-style: italic;
+  text-align: center;
 }
 
 .mainDisplay {
