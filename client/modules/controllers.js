@@ -8,11 +8,27 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
   };
 })
 
-.controller('WaveController', function($scope, waveFactory, $firebase, $log){
-  $scope.wave = 'no wave yet';
+.controller('WaveController', function($scope, waveFactory, $firebase, $log, fbUrl){
+  $scope.waves;
+  $scope.init = function() {
+
+
+    $scope.data = $firebase(new Firebase(fbUrl + '/waves'));
+
+    $scope.data.$on('loaded', function(){
+      console.log($scope.data);
+      console.log('inside loaded');
+      $scope.waves = $scope.data;
+    });
+    $scope.data.$on('change', function(){
+      console.log('inside change');
+      $scope.waves = $scope.data;
+    });
+  }
+
 
   $scope.makeWave = function(user){
-    $scope.wave = waveFactory.makeWave(user);
+    $scope.waves = waveFactory.makeWave(user);
   }
 
 })
