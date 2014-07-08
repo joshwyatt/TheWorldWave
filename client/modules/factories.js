@@ -29,13 +29,22 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   var usersRef = new Firebase(fbUrl + '/users');
   var users = $firebase(usersRef);
 
+  userService.currentUser;
+
+  userService.getCurrentUser = function(){
+    return userService.currentUser;
+  };
+
   userService.makeUser = function(name){
     var createdAt = new Date;
 
-    users.$add({
+    user = {
       createdAt: createdAt,
       name: name
-    });
+    };
+
+    userService.currentUser = user;
+    users.$add(user);
   };
 
   return userService;

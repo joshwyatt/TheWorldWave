@@ -1,7 +1,7 @@
 <div ng-controller="WaveController">
-  <h3>Inside wave.html</h3>
-  <p am-time-ago="wave.createdAt"></p>
-  <p> wave id: {{ wave.id }}</p>
-  <p> create by {{ wave.createdBy }}</p>
-  <p ng-repeat="user in wave.userQueue">user {{ $index + 1 }} is {{ user }}</p>
+  <!-- <p am-time-ago="wave.createdAt"></p> -->
+  <form name="addNewWave" ng-submit="makeWave(newWave)" novalidate>
+    <input type="text" ng-model="newWave">
+    <button type="submit">make a wave</button>
+  </form>
 </div>
