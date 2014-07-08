@@ -1,28 +1,5 @@
 angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
-.factory('waveFactory', function($firebase, fbUrl, $log){
-  var waveService = {};
-
-  waveService.makeWave = function(){
-    var wavesRef = new Firebase(fbUrl + '/waves');
-    var waves = $firebase(wavesRef);
-    console.log('in make wave');
-    var createdAt = new Date;
-    var createdBy = 'ya moms shiver';
-    waves.$add({
-      createdAt: createdAt,
-      createdBy: createdBy
-    });
-  };
-
-  waveService.destroyWave = function(waveId){
-    //needs to be rebuild for firebase
-  };
-
-  return waveService;
-
-})
-
 .factory('userFactory', function($firebase, fbUrl, $log){
   var userService = {};
 
@@ -66,28 +43,48 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   return userService;
 })
 
-.factory('statsFactory', function($firebase, fbUrl, $log){
-  var statsService = {};
+.factory('waveFactory', function($firebase, fbUrl, $log){
+  var waveService = {};
   var waveIdTicker = 0;
 
-  statsService.waves = {};
+  waveService.waves = {};
 
-  statsService.makeWave = function(user){
+  waveService.makeWave = function(user){
     var wave = {};
+    wave.id = waveIdTicker++;
+    wave.startedAt = new Date;
     wave.userQueue = [];
 
     wave.user = user;
-    wave.id = waveIdTicker++;
-    wave.userQueue.add(user);
-    wave.startedAt = new Date;
+    wave.userQueue.push(user);
+
+    wave.passes = 0;
+    wave.score = 0;
+    wave.lastPass = wave.startedAt;
+
+    wave.users = wave.userQueue.length;
+
+    return wave;
+  };
+
+  waveService.addWaveToWaves = function(wave){
+    waveService.waves[wave.id] = wave;
+  };
+
+  waveService.updateWaveScore = function(wave){
+    var currentTime = new Date;
+    var timeAlive = currentTime - wave.startedAt;
+    var timeSinceLastPass = currentTime - wave.lastPass;
 
 
     return wave;
   };
 
-  statsService.addWaveToWaves = function(wave){
-    statsService.waves[wave.id] = wave;
-  };
+  waveService.passWave = function(wave){
+    //pass wave to next user in userqueue
+    //update passes
+    //update score
+  }
 
-  return statsService;
+  return waveService;
 });

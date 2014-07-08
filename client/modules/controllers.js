@@ -9,15 +9,19 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 })
 
 .controller('WaveController', function($scope, waveFactory, $firebase, $log){
-  $scope.waveAway = function(){
-    alert();
-    console.log('here');
-  };
+  $scope.wave = 'no wave yet';
+  $scope.heyo = 'something';
+
+  $scope.makeWave = function(){
+    $scope.wave = waveFactory.makeWave();
+  }
+
 })
 
 .controller('SignUpController', function($scope, userFactory, $firebase){
   $scope.createUser = userFactory.createUser;
 })
 
-.controller('StatsController', function($scope, $firebase, statsFactory){
+.controller('StatsController', function($scope, $firebase, waveFactory){
+
 });
