@@ -12,16 +12,13 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
   $scope.waves;
   $scope.init = function() {
 
-
     $scope.data = $firebase(new Firebase(fbUrl + '/waves'));
 
     $scope.data.$on('loaded', function(){
-      console.log($scope.data);
-      console.log('inside loaded');
       $scope.waves = $scope.data;
     });
+    
     $scope.data.$on('change', function(){
-      console.log('inside change');
       $scope.waves = $scope.data;
     });
   }
