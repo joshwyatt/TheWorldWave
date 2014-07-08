@@ -11,6 +11,14 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
     });
   };
 
+  userService.getUser = function(username){
+    var userRef = new Firebase(fbUrl + '/users/' + username);
+    userRef.on('value', function(snapshot){
+      console.log('in getUser');
+      console.log(snapshot.val());
+    })
+  }
+
 
   userService.loginUser = function(){
       var userRef = new Firebase(fbUrl);
