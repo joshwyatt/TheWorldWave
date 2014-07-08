@@ -27,9 +27,21 @@ angular.module('wwa.factories', [])
 
   return waveService;
 
-  //add wave to waves
-  //get wave by id
-  //get wave by other properties
-  //delete waves
+})
 
-});
+.factory('userFactory', function(){
+  var userService = {};
+  var _users = {};
+  var _userIdTicker = 0;
+
+  userService.makeUser = function(name){
+    var user = {};
+    user.wave = {};
+    user.id = _userIdTicker++;
+    user.createdAt = new Date;
+    _users[user.id] = user;
+    return user;
+  }
+
+  return userService;
+})

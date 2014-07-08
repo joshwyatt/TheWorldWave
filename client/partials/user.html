@@ -1,4 +1,4 @@
 <div ng-controller="UserController">
-  <h3>This is a test paragraph to display user.username from the UserController</h3>
-  <p>{{ user.username }}</p>
+  <h3>Inside user.html</h3>
+  <p ng-repeat="(key, value) in user">{{ key }}: {{ value }}</p>
 </div>
