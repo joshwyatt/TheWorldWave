@@ -1,9 +1,9 @@
 angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 
 .controller('UserController', function($scope, userFactory, $firebase, $log){
-  $scope.submitUser = function(user){
+  $scope.createUser = function(user){
     console.log('in submitUser');
-    userFactory.makeUser(user);
+    userFactory.createUser(user);
     $scope.newUser = '';
   };
 })

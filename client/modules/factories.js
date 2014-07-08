@@ -4,25 +4,13 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   var userService = {};
 
   userService.createUser = function(newUser){
-    var userRef = new Firebase(fbUrl + '/users');
-    var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
-      if (error) {
-        console.log(error);
-      } else if (user) {
-        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-      }
-    });
+    var userRef = new Firebase(fbUrl + '/users/' + newUser);
 
-    auth.createUser(newUser.email, newUser.password, function(error, user) {
-      if (!error) {
-        console. log('User Id: ' + user.uid + ', Email: ' + user.email);
-        auth.$add({id: user.uid, email: user.email});
-      }
-      if (error){
-        console.log('in error: ' + error);
-      }
+    userRef.set({
+      name: newUser
     });
-  }
+  };
+
 
   userService.loginUser = function(){
       var userRef = new Firebase(fbUrl);
@@ -64,8 +52,8 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
     wave.users = wave.userQueue.length;
 
-    var fb = new Firebase(fbUrl + '/waves');
-    fb.set({
+    var waveRef = new Firebase(fbUrl + '/waves/' + wave.id);
+    waveRef.set({
       id: wave.id,
       startedAt: wave.startedAt,
       user: wave.user,
