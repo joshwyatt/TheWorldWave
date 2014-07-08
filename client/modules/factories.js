@@ -23,28 +23,49 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
 })
 
-.factory('userFactory', function($firebase, fbUrl){
+.factory('userFactory', function($firebase, fbUrl, $log){
   var userService = {};
 
-  var usersRef = new Firebase(fbUrl + '/users');
-  var users = $firebase(usersRef);
+  userService.createUser = function(newUser){
+    var userRef = new Firebase(fbUrl + '/users');
+    var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
+      if (error) {
+        // an error occurred while attempting login
+        console.log(error);
+      } else if (user) {
+        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+      }
+    });
+    auth.createUser(newUser.email, newUser.password, function(error, user) {
+      // console.log('email' + email);
+      // console.log('password' + password);
+      if (!error) {
+        console. log('User Id: ' + user.uid + ', Email: ' + user.email);
+        auth.$add({id: user.uid, email: user.email});
+        // user.email = email;
+        // user.password = password;
+        // console.log('inside createUser');
+      }
+      if (error){
+        console.log('in error: ' + error);
+      }
+    });
+  }
 
-  userService.currentUser;
-
-  userService.getCurrentUser = function(){
-    return userService.currentUser;
-  };
-
-  userService.makeUser = function(name){
-    var createdAt = new Date;
-
-    user = {
-      createdAt: createdAt,
-      name: name
-    };
-
-    userService.currentUser = user;
-    users.$add(user);
+  userService.loginUser = function(){
+      var userRef = new Firebase(fbUrl);
+      var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
+        if (error) {
+          // an error occurred while attempting login
+          console.log(error);
+        } else if (user) {
+          // user authenticated with Firebase
+          console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+        } else {
+          // user is logged out
+        }
+      });
+      auth.login('facebook');
   };
 
   return userService;

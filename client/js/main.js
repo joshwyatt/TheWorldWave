@@ -3,9 +3,9 @@ var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angul
 .config(function($stateProvider, $urlRouterProvider) {
     
     $stateProvider
-        .state('user', {
-            url: '/user',
-            templateUrl: 'partials/user.html'
+        .state('signup', {
+            url: '/signup',
+            templateUrl: 'partials/signUp.html'
         })
         .state('wave', {
           url: '/wave',
@@ -16,7 +16,7 @@ var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angul
           templateUrl: 'partials/waveStats.html'
         });
 
-    $urlRouterProvider.otherwise('/user');
+    $urlRouterProvider.otherwise('/signUp');
 })
 
 .run(function($rootScope){

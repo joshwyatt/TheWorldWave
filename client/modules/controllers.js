@@ -4,8 +4,13 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
   $scope.submitUser = function(user){
     userFactory.makeUser(user);
     $scope.newUser = '';
-  }
-  $scope.currentUser = userFactory.currentUser || 'no user yet';
+  };
+
+  $scope.authenticate = userFactory.authenticate;
+})
+
+.controller('SignUpController', function($scope, userFactory, $firebase){
+  $scope.createUser = userFactory.createUser;
 })
 
 .controller('WaveStatsController', function($scope, $firebase){
@@ -19,4 +24,5 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 
   $scope.radioModel = 'Middle';
 
-})
+});
+
