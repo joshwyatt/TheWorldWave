@@ -1,6 +1,9 @@
 <div ng-controller="UserController">
-  <form name="addUserForm" ng-submit="makeUser(newUser)" novalidate>
-    <input type="text" ng-model="newUser">
-    <button type="submit">create user</button>
-  </form>
+  <div class="form-group">
+    <form name="addUserForm" ng-submit="submitUser(newUser)" novalidate>
+      <input class="form-control" type="text" ng-model="newUser" placeholder="enter username">
+      <input type="submit" style="position: absolute; left: -9999px"/>
+    </form>
+  </div>
+  <!-- <button type="submit">create user</button> -->
 </div>
