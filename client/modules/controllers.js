@@ -17,7 +17,6 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 })
 
 .controller('WaveController', function($scope, waveFactory, $firebase, $log){
-  $scope.makeWave = waveFactory.makeWave;
 })
 
 .controller('ButtonsController', function($scope){
