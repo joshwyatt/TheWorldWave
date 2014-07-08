@@ -6,13 +6,6 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   var wavesRef = new Firebase(fbUrl + '/waves');
   var waves = $firebase(wavesRef);
 
-  //storage for waves
-  // var _waves = {};
-  // var _waveIdTicker = 0;
-
-  //HELPER METHODS
-
-  //wave making function eventually needs tying to actual database
   waveService.makeWave = function(createdBy){
     var createdAt = new Date;
     var createdBy = createdBy || 'ya moms shiver';
