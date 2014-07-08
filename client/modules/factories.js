@@ -4,25 +4,21 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   var userService = {};
 
   userService.createUser = function(newUser){
-    var userRef = new Firebase(fbUrl + '/users');
-    var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
-      if (error) {
-        console.log(error);
-      } else if (user) {
-        console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-      }
-    });
+    var userRef = new Firebase(fbUrl + '/users/' + newUser);
 
-    auth.createUser(newUser.email, newUser.password, function(error, user) {
-      if (!error) {
-        console. log('User Id: ' + user.uid + ', Email: ' + user.email);
-        auth.$add({id: user.uid, email: user.email});
-      }
-      if (error){
-        console.log('in error: ' + error);
-      }
+    userRef.set({
+      name: newUser
     });
+  };
+
+  userService.getUser = function(username){
+    var userRef = new Firebase(fbUrl + '/users/' + username);
+    userRef.on('value', function(snapshot){
+      console.log('in getUser');
+      console.log(snapshot.val());
+    })
   }
+
 
   userService.loginUser = function(){
       var userRef = new Firebase(fbUrl);
@@ -52,24 +48,27 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
   waveService.makeWave = function(user){
     var wave = {};
     wave.id = waveIdTicker++;
-    wave.startedAt = new Date;
+    // wave.startedAt = new Date;
+    wave.startedAt = '20 hours ago';
     wave.userQueue = [];
 
     wave.user = user;
     wave.userQueue.push(user);
 
     wave.passes = 0;
+    wave.average = 0;
     wave.score = 0;
     wave.lastPass = wave.startedAt;
 
     wave.users = wave.userQueue.length;
 
-    var fb = new Firebase(fbUrl + '/waves');
-    fb.set({
+    var waveRef = new Firebase(fbUrl + '/waves/' + wave.id);
+    waveRef.set({
       id: wave.id,
       startedAt: wave.startedAt,
       user: wave.user,
       passes: wave.passes,
+      average: wave.average,
       score: wave.score,
       lastPass: wave.lastPass,
       numberOfUsers: wave.users
