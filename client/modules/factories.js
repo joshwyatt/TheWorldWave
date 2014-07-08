@@ -64,6 +64,17 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
     wave.users = wave.userQueue.length;
 
+    var fb = new Firebase(fbUrl + '/waves');
+    fb.set({
+      id: wave.id,
+      startedAt: wave.startedAt,
+      user: wave.user,
+      passes: wave.passes,
+      score: wave.score,
+      lastPass: wave.lastPass,
+      numberOfUsers: wave.users
+    });
+
     return wave;
   };
 

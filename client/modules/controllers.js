@@ -10,10 +10,9 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 
 .controller('WaveController', function($scope, waveFactory, $firebase, $log){
   $scope.wave = 'no wave yet';
-  $scope.heyo = 'something';
 
-  $scope.makeWave = function(){
-    $scope.wave = waveFactory.makeWave();
+  $scope.makeWave = function(user){
+    $scope.wave = waveFactory.makeWave(user);
   }
 
 })
