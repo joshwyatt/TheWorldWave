@@ -47,6 +47,15 @@ angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
   $scope.createUser = userFactory.createUser;
 })
 
-.controller('StatsController', function($scope, $firebase, waveFactory){
+.controller('StatsController', function($scope, $firebase, waveFactory, $log){
 
-});
+})
+
+.controller('TickerController', function($scope, $timeout){
+  $scope.highscore = 985643;
+  $scope.onTimeout = function(){
+      $scope.highscore += 348;
+      mytimeout = $timeout($scope.onTimeout,1000);
+  }
+  var mytimeout = $timeout($scope.onTimeout,1000);
+})

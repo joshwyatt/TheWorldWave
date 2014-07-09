@@ -1,4 +1,4 @@
-<div class="mainDisplay">
+<div class="mainDisplay" ng-controller="TickerController" ng-init="tick()">
   <dl>
     <dt>Created By
       <dd>Phillip</dd>
@@ -6,11 +6,11 @@
     <dt>Number Of Users
       <dd>412</dd>
     </dt>
-    <dt>Average Crest
-      <dd>28 seconds</dd>
+    <dt>Average
+      <dd>4 seconds</dd>
     </dt>
     <dt>Score
-      <dd>987245</dd>
+      <dd>{{ highscore }}</dd>
     </dt>
   </dl>
 </div>
