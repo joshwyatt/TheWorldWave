@@ -1,32 +1,45 @@
 angular.module('wwa.controllers', ['wwa.factories', 'firebase', 'worldWaveApp'])
 
-.controller('UserController', function($scope, userFactory, $firebase, $log){
+.controller('UserController', function($scope, userFactory, $firebase, $log, fbUrl){
+
   $scope.createUser = function(user){
     console.log('in submitUser');
     userFactory.createUser(user);
     $scope.newUser = '';
   };
+
+  $scope.users;
+  $scope.init = function(){
+    $scope.data = $firebase(new Firebase(fbUrl + '/users'));
+    $scope.data.$on('loaded', function(){
+      console.log('users init() loaded: ' + $scope.data);
+      $scope.users = $scope.data;
+    });
+    $scope.data.$on('change', function(){
+      console.log('users init() change: ' + $scope.data);
+      $scope.users = $scope.data;
+    });
+  };
+
 })
 
 .controller('WaveController', function($scope, waveFactory, $firebase, $log, fbUrl){
   $scope.waves;
-  $scope.init = function() {
-
+  $scope.init = function(){
     $scope.data = $firebase(new Firebase(fbUrl + '/waves'));
-
+    console.log($scope.data);
     $scope.data.$on('loaded', function(){
       $scope.waves = $scope.data;
     });
-    
     $scope.data.$on('change', function(){
       $scope.waves = $scope.data;
     });
-  }
+  };
 
 
   $scope.makeWave = function(user){
     $scope.waves = waveFactory.makeWave(user);
-  }
+  };
 
 })
 

@@ -2,9 +2,10 @@ angular.module('wwa.factories', ['firebase', 'worldWaveApp'])
 
 .factory('userFactory', function($firebase, fbUrl, $log){
   var userService = {};
+  var idTicker = 0;
 
   userService.createUser = function(newUser){
-    var userRef = new Firebase(fbUrl + '/users/' + newUser);
+    var userRef = new Firebase(fbUrl + '/users/' + idTicker++);
 
     userRef.set({
       name: newUser
