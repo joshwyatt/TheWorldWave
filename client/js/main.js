@@ -18,7 +18,11 @@ var app = angular.module('worldWaveApp', ['ui.router', 'wwa.controllers', 'angul
         .state('highscore', {
           url: '/highscore',
           templateUrl: 'partials/highscore.html'
-        });
+        })
+        .state('users', {
+          url: '/users',
+          templateUrl: 'partials/users.html'
+        })
 
     $urlRouterProvider.otherwise('/signUp');
 })
